@@ -1,12 +1,14 @@
-from django.urls import path
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
 
 from . import views
 
+router = DefaultRouter()
+router.register(r'tables', views.BookingViewSet)
 
 urlpatterns = [
     path("", views.index, name="index"),
-    # path("about/", views.about, name="about"),
-    # path("book/", views.book, name="book"),
-    # path("menu/", views.menu, name="menu"),
-    # path("menu-item/<int:pk>/", views.display_menu_item, name="menu-item"),
+    path("menu/", views.MenuItemView.as_view(), name="menu"),
+    path("menu/<int:pk>/", views.SingleMenuItemView.as_view(), name="menu-item"),
+    path("bookings/", include(router.urls)),
 ]
