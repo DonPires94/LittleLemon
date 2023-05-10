@@ -16,6 +16,6 @@ class MenuViewTest(TestCase):
 
     def test_getall(self):
         self.client.login(username="littlelemon", password="lemon@123!")
-        response = self.client.get("/menu/")
+        response = self.client.get("/api/menu/")
         self.assertEqual(response.status_code, 200)
         self.assertEqual(len(response.json()), 3)
